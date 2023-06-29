@@ -8,13 +8,6 @@ services:
        - ./data:/data/db
       ports:
        - "27017:27017"
-
-  prometheus:
-      image: prom/prometheus
-      ports:
-        - 9090:9090
-      volumes:
-        - ./prometheus:/Files/etc/prometheus
        
   grafana:
       image: grafana/grafana
