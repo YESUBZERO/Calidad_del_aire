@@ -30,4 +30,4 @@ def obtener_ultimos_datos():
     return jsonify(datos)
 
 if __name__ == '__main__':
-    app.run(debug = True, host='192.168.0.10', port=5000)
+    app.run(debug = True, host='192.168.0.9', port=5000)
