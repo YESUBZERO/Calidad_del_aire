@@ -2,11 +2,12 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from sklearn import tree
+import joblib
 
 # Cargar los datos
-data = pd.read_csv('data_pm.csv')
+data = pd.read_csv('datasets/data_pm.csv')
 
 # Seleccionar las características y la variable de respuesta
 X = data[['PM2.5 AQI']]
@@ -26,3 +27,6 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print('Precisión:', accuracy)
+
+# Guardar el modelo en un archivo
+joblib.dump(model, 'modelo_rf.pkl')
