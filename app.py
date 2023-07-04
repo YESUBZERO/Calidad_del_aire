@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime, timedelta
+from models import prediccion
 
 app = Flask(__name__)
 
@@ -11,7 +12,9 @@ collection = db['pms7003_data']
 @app.route('/data', methods=['POST'])
 def almacenar_datos():
     data = request.json
+    data['AQI LEVEL'] = prediccion.clasificar(data['PM25'])
     data['fecha'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print(data['AQI LEVEL'])
     collection.insert_one(data)
     return 'Datos almacenados'
 
@@ -30,4 +33,4 @@ def obtener_ultimos_datos():
     return jsonify(datos)
 
 if __name__ == '__main__':
-    app.run(debug = True, host='172.20.10.9', port=5000)
+    app.run(debug = True, host='192.168.0.9', port=5000)

@@ -9,7 +9,20 @@ def clasificar(pm):
     prediccion = modelo_rf_cargado.predict([[pm]])
 
     # Imprimir la predicción
-    print(prediccion[0])
+    #print(prediccion[0])
 
-    return prediccion[0]
+    if prediccion[0] == 'GOOD':
+        return 'BUENA'
+    elif prediccion[0] == 'SATISFACTORY':
+        return 'SATISFACTORIA'
+    elif prediccion[0] == 'MODERATE':
+        return 'MODERADA'
+    elif prediccion[0] == 'POOR':
+        return 'POBRE'
+    elif prediccion[0] == 'VERY POOR':
+        return 'MUY POBRE'
+    elif prediccion[0] == 'SEVERE':
+        return 'PELIGROSA'
+
+clasificar(50)
 
